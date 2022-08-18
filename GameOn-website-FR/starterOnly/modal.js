@@ -1,10 +1,10 @@
 function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
 }
 
 // DOM Elements
@@ -17,111 +17,135 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
 function launchModal() {
-  modalbg.style.display = "block";
+    modalbg.style.display = "block";
 }
 
-//Début de mon code ...............................
+// Début de mon code ...............................
+// ////////////////////////////////  Suppression des champs et affichage du
+// message de validation d'envoi ////////////////////////////////
 
-//////////////////////////////////  Suppression des champs et affichage du message de validation d'envoi //////////////////////////////////
-
-/*const change = document.querySelector('form'); 
+/*const change = document.querySelector('form');
 change.addEventListener("click", () => {
  change.style.visibility = 'hidden';
 change.style.background = 'black';
 });*/
 
-/*Utilsé le code juste au dessus après avoir réglé le problème de validation*/
+/* Utilsé le code juste au dessus après avoir réglé le problème de validation */
 
-
-////////////////////////////////// Function fermeture fenêtre //////////////////////////////////
-
+// //////////////////////////////// Function fermeture fenêtre
+// ////////////////////////////////
 
 function closed() {
-  modalbg.style.display = "none";
+    modalbg.style.display = "none";
 }
-  
+
 /*
 ° "none" fait disparaitre la modal
 */
 
-////////////////////////////////// validation des champs //////////////////////////////////
+// //////////////////////////////// validation des champs
+// ////////////////////////////////
 
 /*Récupération*/
 let firstName = document.getElementById('firstname');
-let lastName = document.getElementById('lastname').value;
-let email = document.getElementById('email').value;
-let birthdate = document.getElementById('birthdate').value;
+let lastName = document
+    .getElementById('lastname')
+    .value;
+let email = document
+    .getElementById('email')
+    .value;
+let birthdate = document
+    .getElementById('birthdate')
+    .value;
 
-
-
-// regex
-const namesRegex =/([A-Z][A-Za-z' -])+$/;
-const emailRegex = /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
-const birthdateRegex = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
-
-
+// Utilisation de regex
+const nameCharacter = /([A-Z][A-Za-z' -])+$/;
+const emailCharacter = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const birthdateCharacter = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
 
 // messages
 const errors = {
-  errorName1: "2 caractères minimum",
-  errorName2: "Seul l'alphabet est accépté",
-  emailMsg: "Veuillez entrer une adresse mail valide",
-  birthdateMsg: "Veuillez entrer une date de naissance valide",
-  tounamentsMsg: "Veuillez entrer un nombre de tournois",
-  locationMsg: "Veuillez séléctionner une ville",
-  checkboxMsg: "Veuillez cocher accepter les conditions d'utilisation"
+    errorName1: "2 caractères minimum",
+    errorName2: "Seul l'alphabet est accépté",
+    errorName3: "2 caractères minimum",
+    errorName4: "Seul l'alphabet est accépté",
+    errorEmail: "Veuillez entrer une adresse mail valide",
+    birthdateMsg: "Veuillez entrer une date de naissance valide",
+    tounamentsMsg: "Veuillez entrer un nombre de tournois",
+    locationMsg: "Veuillez séléctionner une ville",
+    checkboxMsg: "Veuillez cocher accepter les conditions d'utilisation"
 }
 
-
-
-// formData[] pour ne pas les lister directement dans le HTML
-// lastName
-formData[0].addEventListener("input", firstNameValid);
+// formData[] création d'un tableau qui récupère les données et les stocks
+/*formData[0].addEventListener("input", firstNameValid);
 function firstNameValid() {
-  if (firstName.value.length < 2) {
+    if (firstName.value.length < 2) {
 
-    let firstNameMessage = document.getElementById("firstnameError");
-    firstNameMessage.innerHTML = errors.errorName1;
-    
-    return false;
+        let firstNameMessage = document.getElementById("firstnameError");
+        firstNameMessage.innerHTML = errors.errorName1;
 
-  } else if (namesRegex.test(firstName.value) == false) {
+        return false;
 
-    let firstNameMessage = document.getElementById("firstnameError");
-    firstNameMessage.innerHTML = errors.errorName2;
-    
-    return false;
+    } else if (nameCharacter.test(firstName.value) == false) {
 
+        let firstNameMessage = document.getElementById("firstnameError");
+        firstNameMessage.innerHTML = errors.errorName2;
 
-  } else {
-    document.getElementById("firstnameError").innerHTML = "";
-    return true;
-  }
+        return false;
+
+    } else {
+        document.getElementById("firstnameError").innerHTML = "";
+       
+        return true;
+    }
 }
+*/
+//lastName
+/*
+formData[0].addEventListener("input", lastNameValid);
+function lastNameValid() {
+    if (lastName.value.length < 2) {
 
-formData[0].document.getElementById("lastname");
-function lastNameValid(){
-  if(lastName.value.trim() || lastName.valuelength < 2){
-    let lastnameError = document.getElementById("lastname")
-      lastnameError.innerHTML = errors.errorName1;
+        let lastNameMessage = document.getElementById("lastNameError");
+        lastNameMessage.innerHTML = errors.errorName3;
 
-      return false;
-        }
-        else if  (namesRegex.test(firstName.value) == false){
-          let lastnameError = document.getElementById("lastname")
-          lastnameError.innerHTML = errors.errorName2;
-    
-          return false;
-        }
-        else{
-          document.getElementById("firstnameError").innerHTML = "";
-          return true;
-        }
+        return false;
+
+    } else if (nameCharacter.test(lastName.value) == false) {
+
+        let lastNameMessage = document.getElementById("lastNameError");
+        lastNameMessage.innerHTML = errors.errorName4;
+
+        return false;
+
+    } else {
+        document.getElementById("lastNameError").innerHTML = "";
+       
+        return true;
+    }
+}*/
+
+
+/*email */
+formData[0].addEventListener("input", emailValid);
+function emailValid() {
+ if (emailCharacter.test(email.value) == false) {
+
+        let emailMessage = document.getElementById("emailError");
+        emailMessage.innerHTML = errors.errorEmail;
+
+        return false;
+
+    } else {
+        document.getElementById("emailError").innerHTML = "";
+       
+        return true;
+    }
 }
 
 /*function emailValid(){
   let email = document.form.email.value;
-  let modele = /^[a-z\-_\.]$/i;
+  let modele =  /^[a-z0-9\-_\.]+@[a-z0-9]+\.[a-z]{2,5}$/i;
   if (modele.test(email))
     alert("Votre adresse email est valide !")
   else
