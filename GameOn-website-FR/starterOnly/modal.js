@@ -49,18 +49,15 @@ function closed() {
 /*Récupération*/
 let firstName = document.getElementById('firstname');
 let lastName = document
-    .getElementById('lastname')
-    .value;
+    .getElementById('lastname');
 let email = document
-    .getElementById('email')
-    .value;
+    .getElementById('email');
 let birthdate = document
-    .getElementById('birthdate')
-    .value;
+    .getElementById('birthdate');
 
 // Utilisation de regex
 const nameCharacter = /([A-Z][A-Za-z' -])+$/;
-const emailCharacter = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const emailCharacter = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
 const birthdateCharacter = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
 
 // messages
@@ -70,14 +67,20 @@ const errors = {
     errorName3: "2 caractères minimum",
     errorName4: "Seul l'alphabet est accépté",
     errorEmail: "Veuillez entrer une adresse mail valide",
-    birthdateMsg: "Veuillez entrer une date de naissance valide",
-    tounamentsMsg: "Veuillez entrer un nombre de tournois",
-    locationMsg: "Veuillez séléctionner une ville",
-    checkboxMsg: "Veuillez cocher accepter les conditions d'utilisation"
 }
 
 // formData[] création d'un tableau qui récupère les données et les stocks
-/*formData[0].addEventListener("input", firstNameValid);
+//on récupre
+document.getElementById('allData').addEventListener("submit", function (event) {
+event.preventDefault();
+console.log(event);
+firstNameValid();
+lastNameValid();
+emailValid();
+}
+);
+
+
 function firstNameValid() {
     if (firstName.value.length < 2) {
 
@@ -99,10 +102,9 @@ function firstNameValid() {
         return true;
     }
 }
-*/
+
 //lastName
-/*
-formData[0].addEventListener("input", lastNameValid);
+
 function lastNameValid() {
     if (lastName.value.length < 2) {
 
@@ -123,11 +125,10 @@ function lastNameValid() {
        
         return true;
     }
-}*/
+}
 
 
 /*email */
-formData[0].addEventListener("input", emailValid);
 function emailValid() {
  if (emailCharacter.test(email.value) == false) {
 
@@ -143,13 +144,4 @@ function emailValid() {
     }
 }
 
-/*function emailValid(){
-  let email = document.form.email.value;
-  let modele =  /^[a-z0-9\-_\.]+@[a-z0-9]+\.[a-z]{2,5}$/i;
-  if (modele.test(email))
-    alert("Votre adresse email est valide !")
-  else
-    alert("Votre adresse email est invalide !");
-  return false;
-}
-*/
+/*Birthdate*/
