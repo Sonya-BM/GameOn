@@ -21,8 +21,8 @@ function launchModal() {
 }
 
 // Début de mon code ...............................
-// ////////////////////////////////  Suppression des champs et affichage du
-// message de validation d'envoi ////////////////////////////////
+// //////////////////////////////  Suppression des champs et affichage du
+// message de validation d'envoi //////////////////////////////
 
 /*const change = document.querySelector('form');
 change.addEventListener("click", () => {
@@ -32,8 +32,8 @@ change.style.background = 'black';
 
 /* Utilsé le code juste au dessus après avoir réglé le problème de validation */
 
-// //////////////////////////////// Function fermeture fenêtre
-// ////////////////////////////////
+// ////////////////////////////// Function fermeture fenêtre
+// //////////////////////////////
 
 function closed() {
     modalbg.style.display = "none";
@@ -43,23 +43,21 @@ function closed() {
 ° "none" fait disparaitre la modal
 */
 
-// //////////////////////////////// validation des champs
-// ////////////////////////////////
+// ////////////////////////////// validation des champs
+// //////////////////////////////
 
 /*Récupération*/
 let firstName = document.getElementById('firstname');
-let lastName = document
-    .getElementById('lastname');
-let email = document
-    .getElementById('email');
-let birthdate = document
-    .getElementById('birthdate');
-
+let lastName = document.getElementById('lastname');
+let email = document.getElementById('email');
+let birthdate = document.getElementById('birthdate');
+let numberQuantity = document.getElementById('quantity');
+let checkbox = document.getElementById('checkbox1');
 // Utilisation de regex
-const nameCharacter = /([A-Z][A-Za-z' -])+$/;
+const nameCharacter = /([A-Za-z-])+$/;
 const emailCharacter = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
 const birthdateCharacter = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
-
+const quantityCharacter = /([0-9])$/;
 // messages
 const errors = {
     errorName1: "2 caractères minimum",
@@ -67,18 +65,24 @@ const errors = {
     errorName3: "2 caractères minimum",
     errorName4: "Seul l'alphabet est accépté",
     errorEmail: "Veuillez entrer une adresse mail valide",
+    errorBirthdate: "mauvaise date",
+    errorBirthdateYear : "Mauvaise année",
+    quantityError : "Veuillez entrer un nombre",
+    chexkboxError : "Vous devez valider cette case"
 }
 
-// formData[] création d'un tableau qui récupère les données et les stocks
-//on récupre
+// formData[] création d'un tableau qui récupère les données et les stocks on
+// récupre
 document.getElementById('allData').addEventListener("submit", function (event) {
-event.preventDefault();
-console.log(event);
-firstNameValid();
-lastNameValid();
-emailValid();
-}
-);
+        event.preventDefault();
+        console.log(event);
+        firstNameValid();
+        lastNameValid();
+        emailValid();
+        birthdateValid();
+        quantityValid();
+        checkValid;
+    });
 
 
 function firstNameValid() {
@@ -89,7 +93,7 @@ function firstNameValid() {
 
         return false;
 
-    } else if (nameCharacter.test(firstName.value) == false) {
+    } else if (!nameCharacter.test(firstName.value) ) {
 
         let firstNameMessage = document.getElementById("firstnameError");
         firstNameMessage.innerHTML = errors.errorName2;
@@ -97,8 +101,10 @@ function firstNameValid() {
         return false;
 
     } else {
-        document.getElementById("firstnameError").innerHTML = "";
-       
+        document
+            .getElementById("firstnameError")
+            .innerHTML = "";
+
         return true;
     }
 }
@@ -121,16 +127,17 @@ function lastNameValid() {
         return false;
 
     } else {
-        document.getElementById("lastNameError").innerHTML = "";
-       
+        document
+            .getElementById("lastNameError")
+            .innerHTML = "";
+
         return true;
     }
 }
 
-
 /*email */
 function emailValid() {
- if (emailCharacter.test(email.value) == false) {
+    if (emailCharacter.test(email.value) == false) {
 
         let emailMessage = document.getElementById("emailError");
         emailMessage.innerHTML = errors.errorEmail;
@@ -138,10 +145,94 @@ function emailValid() {
         return false;
 
     } else {
-        document.getElementById("emailError").innerHTML = "";
-       
+        document
+            .getElementById("email")
+            .innerHTML = "";
+
         return true;
     }
 }
 
 /*Birthdate*/
+let today = new Date(); //Récupère la date actuelle
+let currentYear = today.getFullYear(); // Stock l'année dans currentYear
+let daysInMonth = [
+    31,
+    28,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31
+];
+
+function birthdateValid() {
+    let birthDateMessage = document.getElementById("birthdateError");
+   // birthDateMessage.innerHTML = errors.errorBirthdate;  
+   let date = birthdate.value.split('-');
+
+console.log(date);
+    // 2 représente le jour, ici on vérifie si le nombre de jour est inférieur à 1
+    // jour
+    if (date[2] < 1) {
+        birthDateMessage.textContent = "Le jour est incorrect";
+        return false;
+
+    } else if (date[1] < 1 || date[1] > 12) {
+        birthDateMessage.textContent = "Le mois est incorrect";
+        return false;
+
+    } else if (date[0] > 9999) {
+        let birthDateMessage = document.getElementById("birthdateError");
+        birthDateMessage.innerHTML = errors.errorBirthdateYear;
+
+        return false;
+    }
+    if (date[0] > 2004) {
+        birthDateMessage.textContent = "Vous devez être majeur";
+        return false;
+    } else if (currentYear < 2004) {
+
+        return true;
+    }
+}
+
+
+ //Quantity
+
+      function quantityValid() {
+        if (quantityCharacter.test(numberQuantity.value) == false) {
+    
+            let emailMessage = document.getElementById("quantity");
+            emailMessage.innerHTML = errors.quantityError;
+    
+            return false;
+    
+        } else {
+            document
+                .getElementById("quantity")
+                .innerHTML = "";
+    
+            return true;
+        }
+    }
+
+    //checkbox
+ 
+
+    function checkValid()                                 
+    { 
+        var name = document.input["checkValid"]['checkbox'];         
+        if (name.value == ""){ 
+            document.getElementById('checkboxMessage').innerHTML="Veuillez entrez un nom valide";  
+            name.focus(); 
+            return false; 
+        }else{
+            document.getElementById('checkboxMessage').innerHTML="";  
+        }
+    }

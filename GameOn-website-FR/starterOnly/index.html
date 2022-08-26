@@ -65,26 +65,29 @@
                         name="reserve"
                         action="index.html"
                         method="get"
-                        onsubmit="return validate();">
+                       >
+                        
                         <div class="formData">
                             <label for="Prénom">Prénom</label><br>
-                            <input  class="text-control" type="text" id="firstname"  name="firstname" required><br>
+                            <input  class="text-control" type="text" id="firstname"  name="firstname" ><br>
                             <p id="firstnameError"></p>
                         </div>
-                        <div class="formDataLastName">
+                        <div class="formData">
                             <label>Nom</label><br>
-                            <input  class="text-control" type="text" id="lastname" name="lastname"required><br>
+                            <input  class="text-control" type="text" id="lastname" name="lastname"><br>
                             <p id="lastNameError"></p>
 
                         </div>
                         <div class="formData">
                             <label>E-mail</label><br>
-                            <input class="text-control" type="email" id="email" name="email"required><br>
+                            <input class="text-control" id="email" name="email"><br>
                             <p id="emailError"></p>
                         </div>
                         <div class="formData">
                             <label>Date de naissance</label><br>
-                            <input class="text-control" type="date" id="birthdate" name="birthdate" required><br>
+                            <input class="text-control" type="date" id="birthdate" name="birthdate"><br>
+                            <p id="birthdateError"></p>
+
                         </div>
                         <div class="formData">
                             <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
@@ -94,7 +97,7 @@
                                 id="quantity"
                                 name="quantity"
                                 min="0"
-                                max="99">
+                                max="100" >
                         </div>
                         <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
                         <div class="formData">
@@ -155,11 +158,12 @@
                         </div>
 
                         <div class="formData">
-                            <input class="checkbox-input" type="checkbox" id="checkbox1" checked="checked"/>
+                            <input onsubmit="return checkValid()" class="checkbox-input" type="checkbox" id="checkbox1" checked="checked"/>
                             <label class="checkbox2-label" for="checkbox1" required="required">
                                 <span class="checkbox-icon"></span>
                                 J'ai lu et accepté les conditions d'utilisation.
                             </label>
+                            <p id="checkboxMessage"></p>
                             <br>
                             <input class="checkbox-input" type="checkbox" id="checkbox2"/>
                             <label class="checkbox2-label" for="checkbox2">
@@ -168,7 +172,7 @@
                             </label>
                             <br>
                         </div>
-                        <input onclick="change()" class="button message" type="submit" value="C'est parti"/>
+                        <input class="button message" type="submit" value="C'est parti"/>
                         <input class="fermer" type="submit" value="Fermer"/>
 
                     </form>
