@@ -58,23 +58,18 @@
 
         <div class="bground">
             <div class="content">
-                <span  onclick="closed()" class="close"></span>
+                <span onclick="closed()" class="close"></span>
                 <div class="modal-body">
-                    <form 
-                    id="allData"
-                        name="reserve"
-                        action="index.html"
-                        method="get"
-                       >
-                        
+                    <form id="allData" name="reserve" action="index.html" method="get">
+
                         <div class="formData">
                             <label for="Prénom">Prénom</label><br>
-                            <input  class="text-control" type="text" id="firstname"  name="firstname" ><br>
+                            <input class="text-control" type="text" id="firstname" name="firstname"><br>
                             <p id="firstnameError"></p>
                         </div>
                         <div class="formData">
                             <label>Nom</label><br>
-                            <input  class="text-control" type="text" id="lastname" name="lastname"><br>
+                            <input class="text-control" type="text" id="lastname" name="lastname"><br>
                             <p id="lastNameError"></p>
 
                         </div>
@@ -97,7 +92,9 @@
                                 id="quantity"
                                 name="quantity"
                                 min="0"
-                                max="100" >
+                                max="100">
+                            <p id="quantityError"></p>
+
                         </div>
                         <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
                         <div class="formData">
@@ -110,7 +107,7 @@
                             <label class="checkbox-label" for="location1">
                                 <span class="checkbox-icon"></span>
                                 New York</label >
-                            <input
+                                                        <input
                                 class="checkbox-input"
                                 type="radio"
                                 id="location2"
@@ -151,15 +148,21 @@
                                 type="radio"
                                 id="location6"
                                 name="location"
+                                checked
                                 value="Portland"/>
                             <label class="checkbox-label" for="location6">
                                 <span class="checkbox-icon"></span>
                                 Portland</label >
                         </div>
-
+<p id="locationMessage"></p>
                         <div class="formData">
-                            <input onsubmit="return checkValid()" class="checkbox-input" type="checkbox" id="checkbox1" checked="checked"/>
-                            <label class="checkbox2-label" for="checkbox1" required="required">
+                            <input
+                               
+                                class="checkbox-input"
+                                type="checkbox"
+                                id="checkbox1"
+                                checked="checked"/>
+                            <label class="checkbox2-label" for="checkbox1">
                                 <span class="checkbox-icon"></span>
                                 J'ai lu et accepté les conditions d'utilisation.
                             </label>
@@ -170,6 +173,7 @@
                                 <span class="checkbox-icon"></span>
                                 Je souhaite être prévenu des prochains évènements.
                             </label>
+                            <p id="checkboxMessageTwo"></p>
                             <br>
                         </div>
                         <input class="button message" type="submit" value="C'est parti"/>
@@ -177,7 +181,8 @@
 
                     </form>
                 </div>
-            </div><!--fin content-->
+            </div>
+            <!--fin content-->
         </div>
     </main>
     <footer>

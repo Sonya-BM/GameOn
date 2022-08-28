@@ -53,6 +53,11 @@ let email = document.getElementById('email');
 let birthdate = document.getElementById('birthdate');
 let numberQuantity = document.getElementById('quantity');
 let checkbox = document.getElementById('checkbox1');
+let checkboxTwo = document.getElementById('checkbox2');
+/*let locations = document.getElementById('location');*/
+
+
+
 // Utilisation de regex
 const nameCharacter = /([A-Za-z-])+$/;
 const emailCharacter = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
@@ -66,9 +71,13 @@ const errors = {
     errorName4: "Seul l'alphabet est accépté",
     errorEmail: "Veuillez entrer une adresse mail valide",
     errorBirthdate: "mauvaise date",
+    birthdateError2 : "Veuillez entrer une date de naissance",
     errorBirthdateYear : "Mauvaise année",
-    quantityError : "Veuillez entrer un nombre",
-    chexkboxError : "Vous devez valider cette case"
+    errorQuantity : "Veuillez entrer un nombre",
+    errorCheckbox : "Vous devez valider cette case",
+    errorCheckboxTwo :  "Vous devez valider cette case",
+  /*  errorLocation :  "Veuillez choisir une ville",*/
+
 }
 
 // formData[] création d'un tableau qui récupère les données et les stocks on
@@ -80,11 +89,14 @@ document.getElementById('allData').addEventListener("submit", function (event) {
         lastNameValid();
         emailValid();
         birthdateValid();
+        birthdateValid2();
         quantityValid();
-        checkValid;
+        checkValid();
+        checkValidTwo();
+        locationValid();
     });
 
-
+  
 function firstNameValid() {
     if (firstName.value.length < 2) {
 
@@ -154,6 +166,23 @@ function emailValid() {
 }
 
 /*Birthdate*/
+
+function birthdateValid2(){
+    if(birthdate.value.length < 1){
+        let birthDateMessage2 = document.getElementById('birthdateError');
+        birthDateMessage2.innerHTML = errors.birthdateError2;
+
+        return false;
+    }else{
+        document.getElementById("birthdateError").innerHTML ="";
+        return true;
+    }
+}
+
+
+
+
+
 let today = new Date(); //Récupère la date actuelle
 let currentYear = today.getFullYear(); // Stock l'année dans currentYear
 let daysInMonth = [
@@ -192,7 +221,8 @@ console.log(date);
         birthDateMessage.innerHTML = errors.errorBirthdateYear;
 
         return false;
-    }
+
+    } 
     if (date[0] > 2004) {
         birthDateMessage.textContent = "Vous devez être majeur";
         return false;
@@ -206,33 +236,69 @@ console.log(date);
  //Quantity
 
       function quantityValid() {
-        if (quantityCharacter.test(numberQuantity.value) == false) {
-    
-            let emailMessage = document.getElementById("quantity");
-            emailMessage.innerHTML = errors.quantityError;
+        if (numberQuantity.value.length < 1) {
+
+            let quantityMessage = document.getElementById("quantityError");
+            quantityMessage.innerHTML = errors.errorQuantity;
     
             return false;
     
         } else {
             document
-                .getElementById("quantity")
+                .getElementById("quantityError")
                 .innerHTML = "";
     
             return true;
         }
     }
 
+//Locations, choix des villes
+/*
+function locationValid(){
+    if (!location.checked){
+        let locationsMessage = document.getElementById('locationMessage');
+        locationsMessage.innerHTML = errors.errorLocation;
+        
+        return false;
+    } else {
+       document.getElementById('locationMessage').innerHTML = "";
+return true;
+    }
+}*/
+
+
     //checkbox
  
 
-    function checkValid()                                 
-    { 
-        var name = document.input["checkValid"]['checkbox'];         
-        if (name.value == ""){ 
-            document.getElementById('checkboxMessage').innerHTML="Veuillez entrez un nom valide";  
-            name.focus(); 
-            return false; 
-        }else{
-            document.getElementById('checkboxMessage').innerHTML="";  
+function checkValid() {
+        if (!checkbox.checked) {
+      
+          let checkboxMessage = document.getElementById("checkboxMessage");
+          checkboxMessage.innerHTML = errors.errorCheckbox;
+          
+          return false;
+      
+      
+        } else {
+          document.getElementById("checkboxMessage").innerHTML = "";
+          return true;
         }
-    }
+      }
+
+    
+      function checkValidTwo() {
+        if (!checkboxTwo.checked) {
+      
+          let checkboxMessage = document.getElementById("checkboxMessageTwo");
+          checkboxMessage.innerHTML = errors.errorCheckboxTwo;
+          
+          return false;
+      
+      
+        } else {
+          document.getElementById("checkboxMessageTwo").innerHTML = "";
+          return true;
+        }
+      }
+
+    
