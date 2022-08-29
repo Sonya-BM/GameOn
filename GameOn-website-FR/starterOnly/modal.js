@@ -20,9 +20,9 @@ function launchModal() {
     modalbg.style.display = "block";
 }
 
-// Début de mon code ...............................
-// //////////////////////////////  Suppression des champs et affichage du
-// message de validation d'envoi //////////////////////////////
+// Début de mon code ............................... //////////////////////////
+// Suppression des champs et affichage du message de validation d'envoi
+// //////////////////////////
 
 /*const change = document.querySelector('form');
 change.addEventListener("click", () => {
@@ -32,8 +32,8 @@ change.style.background = 'black';
 
 /* Utilsé le code juste au dessus après avoir réglé le problème de validation */
 
-// ////////////////////////////// Function fermeture fenêtre
-// //////////////////////////////
+// ////////////////////////// Function fermeture fenêtre
+// //////////////////////////
 
 function closed() {
     modalbg.style.display = "none";
@@ -43,8 +43,7 @@ function closed() {
 ° "none" fait disparaitre la modal
 */
 
-// ////////////////////////////// validation des champs
-// //////////////////////////////
+// ////////////////////////// validation des champs //////////////////////////
 
 /*Récupération*/
 let firstName = document.getElementById('firstname');
@@ -54,9 +53,9 @@ let birthdate = document.getElementById('birthdate');
 let numberQuantity = document.getElementById('quantity');
 let checkbox = document.getElementById('checkbox1');
 let checkboxTwo = document.getElementById('checkbox2');
-/*let locations = document.getElementById('location');*/
-
-
+let locations = document.querySelectorAll(
+    '#location1 #location2 #location3 #location4 #location5 #location6'
+);
 
 // Utilisation de regex
 const nameCharacter = /([A-Za-z-])+$/;
@@ -71,18 +70,19 @@ const errors = {
     errorName4: "Seul l'alphabet est accépté",
     errorEmail: "Veuillez entrer une adresse mail valide",
     errorBirthdate: "mauvaise date",
-    birthdateError2 : "Veuillez entrer une date de naissance",
-    errorBirthdateYear : "Mauvaise année",
-    errorQuantity : "Veuillez entrer un nombre",
-    errorCheckbox : "Vous devez valider cette case",
-    errorCheckboxTwo :  "Vous devez valider cette case",
-  /*  errorLocation :  "Veuillez choisir une ville",*/
-
+    birthdateError2: "Veuillez entrer une date de naissance",
+    errorBirthdateYear: "Mauvaise année",
+    errorQuantity: "Veuillez entrer un nombre",
+    errorCheckbox: "Vous devez valider cette case",
+    errorCheckboxTwo: "Vous devez valider cette case",
+    errorLocation: "Veuillez choisir une ville"
 }
 
 // formData[] création d'un tableau qui récupère les données et les stocks on
 // récupre
-document.getElementById('allData').addEventListener("submit", function (event) {
+document
+    .getElementById('allData')
+    .addEventListener("submit", function (event) {
         event.preventDefault();
         console.log(event);
         firstNameValid();
@@ -96,7 +96,6 @@ document.getElementById('allData').addEventListener("submit", function (event) {
         locationValid();
     });
 
-  
 function firstNameValid() {
     if (firstName.value.length < 2) {
 
@@ -105,7 +104,7 @@ function firstNameValid() {
 
         return false;
 
-    } else if (!nameCharacter.test(firstName.value) ) {
+    } else if (!nameCharacter.test(firstName.value)) {
 
         let firstNameMessage = document.getElementById("firstnameError");
         firstNameMessage.innerHTML = errors.errorName2;
@@ -167,21 +166,19 @@ function emailValid() {
 
 /*Birthdate*/
 
-function birthdateValid2(){
-    if(birthdate.value.length < 1){
+function birthdateValid2() {
+    if (birthdate.value.length < 1) {
         let birthDateMessage2 = document.getElementById('birthdateError');
         birthDateMessage2.innerHTML = errors.birthdateError2;
 
         return false;
-    }else{
-        document.getElementById("birthdateError").innerHTML ="";
+    } else {
+        document
+            .getElementById("birthdateError")
+            .innerHTML = "";
         return true;
     }
 }
-
-
-
-
 
 let today = new Date(); //Récupère la date actuelle
 let currentYear = today.getFullYear(); // Stock l'année dans currentYear
@@ -202,10 +199,12 @@ let daysInMonth = [
 
 function birthdateValid() {
     let birthDateMessage = document.getElementById("birthdateError");
-   // birthDateMessage.innerHTML = errors.errorBirthdate;  
-   let date = birthdate.value.split('-');
+    // birthDateMessage.innerHTML = errors.errorBirthdate;
+    let date = birthdate
+        .value
+        .split('-');
 
-console.log(date);
+    console.log(date);
     // 2 représente le jour, ici on vérifie si le nombre de jour est inférieur à 1
     // jour
     if (date[2] < 1) {
@@ -222,7 +221,7 @@ console.log(date);
 
         return false;
 
-    } 
+    }
     if (date[0] > 2004) {
         birthDateMessage.textContent = "Vous devez être majeur";
         return false;
@@ -232,73 +231,109 @@ console.log(date);
     }
 }
 
+//Quantity
 
- //Quantity
+function quantityValid() {
+    if (numberQuantity.value.length < 1) {
 
-      function quantityValid() {
-        if (numberQuantity.value.length < 1) {
+        let quantityMessage = document.getElementById("quantityError");
+        quantityMessage.innerHTML = errors.errorQuantity;
 
-            let quantityMessage = document.getElementById("quantityError");
-            quantityMessage.innerHTML = errors.errorQuantity;
-    
-            return false;
-    
-        } else {
-            document
-                .getElementById("quantityError")
-                .innerHTML = "";
-    
-            return true;
-        }
+        return false;
+
+    } else {
+        document
+            .getElementById("quantityError")
+            .innerHTML = "";
+
+        return true;
     }
+}
 
 //Locations, choix des villes
-/*
-function locationValid(){
-    if (!location.checked){
+
+
+function locationValid() {
+    if (!locations.checked) {
         let locationsMessage = document.getElementById('locationMessage');
         locationsMessage.innerHTML = errors.errorLocation;
-        
+
         return false;
+
     } else {
-       document.getElementById('locationMessage').innerHTML = "";
-return true;
+        document
+            .getElementById('locationMessage')
+            .innerHTML = "";
+        return true;
     }
-}*/
+}
+
+function locationValid() {
+    if (document.getElementById('location1').checked) {
+        document
+            .getElementById("locationMessage")
+            .innerHTML;
+    } else if (document.getElementById('location2').checked) {
+        document
+            .getElementById("locationMessage")
+            .innerHTML = "";
+    } else if (document.getElementById('location3').checked) {
+        document
+            .getElementById("locationMessage")
+            .innerHTML = "";
+    } else if (document.getElementById('location4').checked) {
+        document
+            .getElementById("locationMessage")
+            .innerHTML = "";
+    } else if (document.getElementById('location5').checked) {
+        document
+            .getElementById("locationMessage")
+            .innerHTML = "";
+    } else if (document.getElementById('location6').checked) {
+        document
+            .getElementById("locationMessage")
+            .innerHTML = "";
+    } else {
+        document
+            .getElementById("locationMessage")
+            .innerHTML = errors.errorLocation;
+        };   
+}
 
 
-    //checkbox
- 
+
+//checkbox 1
 
 function checkValid() {
-        if (!checkbox.checked) {
-      
-          let checkboxMessage = document.getElementById("checkboxMessage");
-          checkboxMessage.innerHTML = errors.errorCheckbox;
-          
-          return false;
-      
-      
-        } else {
-          document.getElementById("checkboxMessage").innerHTML = "";
-          return true;
-        }
-      }
+    if (!checkbox.checked) {
 
-    
-      function checkValidTwo() {
-        if (!checkboxTwo.checked) {
-      
-          let checkboxMessage = document.getElementById("checkboxMessageTwo");
-          checkboxMessage.innerHTML = errors.errorCheckboxTwo;
-          
-          return false;
-      
-      
-        } else {
-          document.getElementById("checkboxMessageTwo").innerHTML = "";
-          return true;
-        }
-      }
+        let checkboxMessage = document.getElementById("checkboxMessage");
+        checkboxMessage.innerHTML = errors.errorCheckbox;
 
-    
+        return false;
+
+    } else {
+        document
+            .getElementById("checkboxMessage")
+            .innerHTML = "";
+        return true;
+    }
+}
+
+//checkbox 2
+
+function checkValidTwo() {
+    if (!checkboxTwo.checked) {
+
+        let checkboxMessage = document.getElementById("checkboxMessageTwo");
+        checkboxMessage.innerHTML = errors.errorCheckboxTwo;
+
+        return false;
+
+    } else {
+        document
+            .getElementById("checkboxMessageTwo")
+            .innerHTML = "";
+        return true;
+    }
+}

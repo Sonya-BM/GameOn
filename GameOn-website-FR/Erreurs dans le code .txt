@@ -17,3 +17,7 @@ Il manque un for dans tous les label
 Solution : ajouté un for 
 -------------------------------------------- 3eme erreur : label --------------------------------------------
 J'ai changé le id des locations, je leur ai à tous donné le même id.
+
+-------------------------------------------- 4eme erreur : input --------------------------------------------
+
+J'ai retiré le checked="checked" de la checkbox pour les termes et conditions d'utilisation
