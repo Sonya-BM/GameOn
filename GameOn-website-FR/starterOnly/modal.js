@@ -59,8 +59,8 @@ let locations = document.querySelectorAll(
 
 // Utilisation de regex
 const nameCharacter = /([A-Za-z-])+$/;
-const emailCharacter = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
-const birthdateCharacter = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
+const emailCharacter = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;    /*/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-z]{2,3})$/ */
+const birthdateCharacter =/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
 const quantityCharacter = /([0-9])$/;
 // messages
 const errors = {
@@ -72,6 +72,8 @@ const errors = {
     errorBirthdate: "mauvaise date",
     birthdateError2: "Veuillez entrer une date de naissance",
     errorBirthdateYear: "Mauvaise année",
+    errorBirthdateDay : "Erreur dans le jour de naissance",
+    errorBirthdateMonth : "Erreur dans le mois",
     errorQuantity: "Veuillez entrer un nombre",
     errorCheckbox: "Vous devez valider cette case",
     errorCheckboxTwo: "Vous devez valider cette case",
@@ -101,6 +103,8 @@ function firstNameValid() {
 
         let firstNameMessage = document.getElementById("firstnameError");
         firstNameMessage.innerHTML = errors.errorName1;
+       
+        firstName.style.borderColor = 'red';
 
         return false;
 
@@ -108,6 +112,8 @@ function firstNameValid() {
 
         let firstNameMessage = document.getElementById("firstnameError");
         firstNameMessage.innerHTML = errors.errorName2;
+      
+        firstName.style.borderColor = 'red';
 
         return false;
 
@@ -115,6 +121,8 @@ function firstNameValid() {
         document
             .getElementById("firstnameError")
             .innerHTML = "";
+
+            firstName.style.borderColor = 'white';
 
         return true;
     }
@@ -128,6 +136,8 @@ function lastNameValid() {
         let lastNameMessage = document.getElementById("lastNameError");
         lastNameMessage.innerHTML = errors.errorName3;
 
+        lastName.style.borderColor = 'red';
+
         return false;
 
     } else if (nameCharacter.test(lastName.value) == false) {
@@ -135,12 +145,16 @@ function lastNameValid() {
         let lastNameMessage = document.getElementById("lastNameError");
         lastNameMessage.innerHTML = errors.errorName4;
 
+        lastName.style.borderColor = 'red';
+
         return false;
 
     } else {
         document
             .getElementById("lastNameError")
             .innerHTML = "";
+
+            lastName.style.borderColor = 'white';
 
         return true;
     }
@@ -153,12 +167,16 @@ function emailValid() {
         let emailMessage = document.getElementById("emailError");
         emailMessage.innerHTML = errors.errorEmail;
 
+        email.style.borderColor = 'red';
+
         return false;
 
     } else {
         document
-            .getElementById("email")
+            .getElementById("emailError")
             .innerHTML = "";
+
+            email.style.borderColor = 'white';
 
         return true;
     }
@@ -170,16 +188,92 @@ function birthdateValid2() {
     if (birthdate.value.length < 1) {
         let birthDateMessage2 = document.getElementById('birthdateError');
         birthDateMessage2.innerHTML = errors.birthdateError2;
+     
+        birthdate.style.borderColor = 'red';
 
         return false;
     } else {
         document
             .getElementById("birthdateError")
             .innerHTML = "";
+
+            birthdate.style.borderColor = 'white';
+
         return true;
     }
 }
 
+
+
+let today = new Date(); //Récupère la date actuelle
+let currentYear = today.getFullYear(); // Stock l'année dans currentYear
+let daysInMonth = [
+    31,
+    28,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31
+];
+
+function birthdateValid() {
+    let birthDateMessage = document.getElementById("birthdateError");
+    birthDateMessage.innerHTML = errors.errorBirthdateYear;
+    // birthDateMessage.innerHTML = errors.errorBirthdate;
+    let date = birthdate
+        .value
+        .split('-');
+
+    console.log(date);
+    // 2 représente le jour, ici on vérifie si le nombre de jour est inférieur à 1
+    // jour
+    if (date[2] < 1) {
+       let BirthdateMessageDay = document.getElementById('birthdateError');
+       BirthdateMessageDay.innerHTML = errors.errorBirthdateDay;
+       
+       birthdate.style.borderColor = 'red';
+
+        return false;
+
+    } else if (date[1] < 1 || date[1] > 12) {
+      let  birthDateMessageMonth = document.getElementById('birthdateError');
+      birthDateMessageMonth.innerHTML = errors.errorBirthdateMonth;
+
+      birthdate.style.borderColor = 'red';
+
+        return false;
+
+    } else if (date[0] > 2010) {
+        let birthDateMessageYear = document.getElementById("birthdateError");
+        birthDateMessageYear.innerHTML = errors.errorBirthdateYear;
+        
+        birthdate.style.borderColor = 'red';
+
+        return false;
+
+    }
+    if (date[0] > 2010) {
+        birthDateMessage.textContent = "Vous devez être majeur";
+
+        birthdate.style.borderColor = 'red';
+
+        return false;
+
+    } else if (currentYear < 2010) {
+
+        birthdate.style.borderColor = 'white';
+
+        return true;
+    }
+}
+
+/*
 let today = new Date(); //Récupère la date actuelle
 let currentYear = today.getFullYear(); // Stock l'année dans currentYear
 let daysInMonth = [
@@ -230,6 +324,8 @@ function birthdateValid() {
         return true;
     }
 }
+*/
+
 
 //Quantity
 
@@ -239,12 +335,15 @@ function quantityValid() {
         let quantityMessage = document.getElementById("quantityError");
         quantityMessage.innerHTML = errors.errorQuantity;
 
+        numberQuantity.style.borderColor = 'red';
         return false;
 
     } else {
         document
             .getElementById("quantityError")
             .innerHTML = "";
+           
+            numberQuantity.style.borderColor = 'white';
 
         return true;
     }
@@ -258,12 +357,17 @@ function locationValid() {
         let locationsMessage = document.getElementById('locationMessage');
         locationsMessage.innerHTML = errors.errorLocation;
 
+        locations.style.borderColor = 'red';
+
         return false;
 
     } else {
         document
             .getElementById('locationMessage')
             .innerHTML = "";
+
+            locations.style.borderColor = 'green';
+
         return true;
     }
 }
@@ -273,30 +377,46 @@ function locationValid() {
         document
             .getElementById("locationMessage")
             .innerHTML;
+
+
     } else if (document.getElementById('location2').checked) {
         document
             .getElementById("locationMessage")
             .innerHTML = "";
+
+
+
     } else if (document.getElementById('location3').checked) {
         document
             .getElementById("locationMessage")
             .innerHTML = "";
+
+
     } else if (document.getElementById('location4').checked) {
         document
             .getElementById("locationMessage")
             .innerHTML = "";
+
+
     } else if (document.getElementById('location5').checked) {
         document
             .getElementById("locationMessage")
             .innerHTML = "";
+
+
     } else if (document.getElementById('location6').checked) {
         document
             .getElementById("locationMessage")
             .innerHTML = "";
+
+
     } else {
         document
             .getElementById("locationMessage")
             .innerHTML = errors.errorLocation;
+     
+            locations.style.borderColor = 'red';
+
         };   
 }
 
@@ -309,6 +429,8 @@ function checkValid() {
 
         let checkboxMessage = document.getElementById("checkboxMessage");
         checkboxMessage.innerHTML = errors.errorCheckbox;
+     
+        checkbox.style.borderColor = 'red';
 
         return false;
 
@@ -316,6 +438,9 @@ function checkValid() {
         document
             .getElementById("checkboxMessage")
             .innerHTML = "";
+
+            checkbox.style.borderColor = 'white';
+
         return true;
     }
 }
@@ -327,6 +452,8 @@ function checkValidTwo() {
 
         let checkboxMessage = document.getElementById("checkboxMessageTwo");
         checkboxMessage.innerHTML = errors.errorCheckboxTwo;
+       
+        checkboxTwo.style.borderColor = 'red';
 
         return false;
 
@@ -334,6 +461,9 @@ function checkValidTwo() {
         document
             .getElementById("checkboxMessageTwo")
             .innerHTML = "";
+
+            checkboxTwo.style.borderColor = 'white';
+
         return true;
     }
 }
