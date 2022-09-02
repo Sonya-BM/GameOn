@@ -37,11 +37,11 @@ change.style.background = 'black';
 
 function closed() {
     modalbg.style.display = "none";
+    document.getElementById("allData").reset();
 }
 
-/*
-° "none" fait disparaitre la modal
-*/
+/* none" ferme la modal*/
+/* reset" renitialise la modal*/
 
 // ////////////////////////// validation des champs //////////////////////////
 
