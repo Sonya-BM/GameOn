@@ -44,9 +44,7 @@
                     Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux
                     réservations... Places limitées !
                 </p>
-                <button class="btn-signup modal-btn">
-                    je m'inscris
-                </button>
+
             </div>
             <div class="hero-img">
                 <img src="./bg_img.jpg" alt="img"/>
@@ -58,7 +56,7 @@
 
         <div class="bground">
             <div class="content">
-                <span onclick="closed()" class="close"></span>
+                <span onclick="close()" class="close"></span>
                 <div class="modal-body">
                     <form id="allData" name="reserve" action="index.html" method="get">
 
@@ -75,8 +73,7 @@
                         </div>
                         <div class="formData">
                             <label>E-mail</label><br>
-                            <input class="text-control"
-                            id="email" name="email"><br>
+                            <input class="text-control" id="email" name="email"><br>
                             <p id="emailError"></p>
                         </div>
                         <div class="formData">
@@ -157,7 +154,7 @@
                         </div>
 
                         <div class="formData">
-                            <input class="checkbox-input" type="checkbox" id="checkbox1" />
+                            <input class="checkbox-input" type="checkbox" id="checkbox1"/>
                             <label class="checkbox2-label" for="checkbox1">
                                 <span class="checkbox-icon"></span>
                                 J'ai lu et accepté les conditions d'utilisation.
@@ -172,14 +169,27 @@
                             <p id="checkboxMessageTwo"></p>
                             <br>
                         </div>
-                        <input class="button message" type="submit" value="C'est parti"/>
+                        <input id="button" class="button message" type="submit" value="C'est parti"/>
                         <input class="fermer" type="submit" value="Fermer"/>
-
                     </form>
                 </div>
+
             </div>
             <!--fin content-->
         </div>
+        <!--Formulaire remerciement-->
+       
+        <div class="bgroundConfirmation" style="display: none;" id="formConfirmation">
+         <div class="content">
+            <span onclick="closeConfirmation();" class="close"></span>
+            <div class="modal-body" id="confirmationBody">
+                <p>Merci pour votre inscription !</p>
+                <button onclick="closeConfirmation();" class="btn-submit" id="closeForm">Fermer</button>
+            </div>
+         </div>
+        </div>
+
+        <!--Formulaire remerciement-->
     </main>
     <footer>
         <p class="copyrights">

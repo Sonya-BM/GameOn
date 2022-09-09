@@ -11,7 +11,6 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -21,21 +20,12 @@ function launchModal() {
 }
 
 // Début de mon code ............................... //////////////////////////
-// Suppression des champs et affichage du message de validation d'envoi
-// //////////////////////////
 
-/*const change = document.querySelector('form');
-change.addEventListener("click", () => {
- change.style.visibility = 'hidden';
-change.style.background = 'black';
-});*/
-
-/* Utilsé le code juste au dessus après avoir réglé le problème de validation */
 
 // ////////////////////////// Function fermeture fenêtre
 // //////////////////////////
 
-function closed() {
+function close() {
     modalbg.style.display = "none";
     document.getElementById("allData").reset();
 }
@@ -53,10 +43,9 @@ let birthdate = document.getElementById('birthdate');
 let numberQuantity = document.getElementById('quantity');
 let checkbox = document.getElementById('checkbox1');
 let checkboxTwo = document.getElementById('checkbox2');
-let locations = document.querySelectorAll(
-    '#location1 #location2 #location3 #location4 #location5 #location6'
-);
-
+let locations = document.querySelectorAll('#location1 #location2 #location3 #location4 #location5 #location6');
+let formConfirmation = document.getElementById('formConfirmation');
+let buttonValid = document.getElementById('button');
 // Utilisation de regex
 const nameCharacter = /([A-Za-z-])+$/;
 const emailCharacter = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;    /*/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-z]{2,3})$/ */
@@ -96,6 +85,8 @@ document
         checkValid();
         checkValidTwo();
         locationValid();
+        close();
+        launchConfirmation();
     });
 
 function firstNameValid() {
@@ -430,8 +421,6 @@ function checkValid() {
         let checkboxMessage = document.getElementById("checkboxMessage");
         checkboxMessage.innerHTML = errors.errorCheckbox;
      
-        checkbox.style.borderColor = 'red';
-
         return false;
 
     } else {
@@ -439,7 +428,7 @@ function checkValid() {
             .getElementById("checkboxMessage")
             .innerHTML = "";
 
-            checkbox.style.borderColor = 'white';
+           
 
         return true;
     }
@@ -453,7 +442,7 @@ function checkValidTwo() {
         let checkboxMessage = document.getElementById("checkboxMessageTwo");
         checkboxMessage.innerHTML = errors.errorCheckboxTwo;
        
-        checkboxTwo.style.borderColor = 'red';
+      
 
         return false;
 
@@ -462,8 +451,52 @@ function checkValidTwo() {
             .getElementById("checkboxMessageTwo")
             .innerHTML = "";
 
-            checkboxTwo.style.borderColor = 'white';
+            
 
         return true;
     }
 }
+
+//merci inscription
+
+// Suppression des champs et affichage du message de validation d'envoi
+// //////////////////////////
+/*
+const change = document.querySelector('form');
+change.addEventListener("click", () => {
+ change.style.visibility = 'hidden';
+change.style.background = 'black';
+});
+
+/*test debut */
+const change = document.querySelector('form');
+
+function launchConfirmation() {
+    formConfirmation.style.display = "block";  
+  }
+
+function closeConfirmation(){
+    formConfirmation.style.display = "none";
+}
+
+
+
+
+/*test fin */
+
+
+/*function launchConfirmation() {
+    formConfirmation.style.display = "flex";
+    modalContent.style.display = "none";
+    confirmationBody.style.display = "flex";
+  }*/
+  
+  //closeFormConfirmation() event listener
+  closeForm.addEventListener("click", closeModal);
+  closeForm.addEventListener("click", closeFormConfirmation);
+  
+  //The function closeFormConfirmation() closes both the modal and the confirmation window
+  function closeFormConfirmation() {
+    formConfirmation.style.display = "none";
+    confirmationBody.style.display = "none";
+  }
