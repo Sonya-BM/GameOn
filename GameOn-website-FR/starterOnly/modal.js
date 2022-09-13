@@ -19,11 +19,7 @@ function launchModal() {
     modalbg.style.display = "block";
 }
 
-// Début de mon code ............................... //////////////////////////
-
-
-// ////////////////////////// Function fermeture fenêtre
-// //////////////////////////
+///////////////////////////////Fermeture de la modal ///////////////////////////////
 
 function close() {
     modalbg.style.display = "none";
@@ -33,9 +29,8 @@ function close() {
 /* none" ferme la modal*/
 /* reset" renitialise la modal*/
 
-// ////////////////////////// validation des champs //////////////////////////
 
-/*Récupération*/
+// ////////////////////////// Récupération des id / //////////////////////////
 let firstName = document.getElementById('firstname');
 let lastName = document.getElementById('lastname');
 let email = document.getElementById('email');
@@ -65,7 +60,6 @@ const errors = {
     errorBirthdateMonth : "Erreur dans le mois",
     errorQuantity: "Veuillez entrer un nombre",
     errorCheckbox: "Vous devez valider cette case",
-    errorCheckboxTwo: "Vous devez valider cette case",
     errorLocation: "Veuillez choisir une ville"
 }
 
@@ -83,11 +77,13 @@ document
         birthdateValid2();
         quantityValid();
         checkValid();
-        checkValidTwo();
         locationValid();
         close();
         launchConfirmation();
     });
+//////////////////////////// firsttName //////////////////////////////
+/*On vérifie si la valeur dans le champs est inférieur à 2 caractères et si les caractères saisie corresponde aux conditions du regex avec la méthode test()
+si ce n'est pas le cas on affiche un message d'erreur et le cadre du champs devient rouge*/
 
 function firstNameValid() {
     if (firstName.value.length < 2) {
@@ -119,7 +115,10 @@ function firstNameValid() {
     }
 }
 
-//lastName
+
+//////////////////////////// lastName //////////////////////////////
+/*On vérifie si les caractères saisie corresponde aux conditions du regex
+si ce n'est pas le cas on affiche un message d'erreur et le cadre du champs devient rouge*/
 
 function lastNameValid() {
     if (lastName.value.length < 2) {
@@ -151,7 +150,9 @@ function lastNameValid() {
     }
 }
 
-/*email */
+//////////////////////////// email //////////////////////////////
+/*On vérifie si les caractères saisie corresponde aux conditions du regex
+si ce n'est pas le cas on affiche un message d'erreur et le cadre du champs devient rouge*/
 function emailValid() {
     if (emailCharacter.test(email.value) == false) {
 
@@ -173,8 +174,10 @@ function emailValid() {
     }
 }
 
-/*Birthdate*/
 
+//////////////////////////// Birthdate //////////////////////////////
+/*On vérifie si la date de naissance a bien été saisi, si ce n'est pas le cas
+on affiche un message d'erreur et le champs devient rouge*/
 function birthdateValid2() {
     if (birthdate.value.length < 1) {
         let birthDateMessage2 = document.getElementById('birthdateError');
@@ -216,11 +219,11 @@ let daysInMonth = [
 function birthdateValid() {
     let birthDateMessage = document.getElementById("birthdateError");
     birthDateMessage.innerHTML = errors.errorBirthdateYear;
-    // birthDateMessage.innerHTML = errors.errorBirthdate;
-    let date = birthdate
+
+    let date = birthdate  
         .value
         .split('-');
-
+/*On divise la valeur en array de strings */
     console.log(date);
     // 2 représente le jour, ici on vérifie si le nombre de jour est inférieur à 1
     // jour
@@ -264,62 +267,10 @@ function birthdateValid() {
     }
 }
 
-/*
-let today = new Date(); //Récupère la date actuelle
-let currentYear = today.getFullYear(); // Stock l'année dans currentYear
-let daysInMonth = [
-    31,
-    28,
-    31,
-    30,
-    31,
-    30,
-    31,
-    31,
-    30,
-    31,
-    30,
-    31
-];
 
-function birthdateValid() {
-    let birthDateMessage = document.getElementById("birthdateError");
-    // birthDateMessage.innerHTML = errors.errorBirthdate;
-    let date = birthdate
-        .value
-        .split('-');
-
-    console.log(date);
-    // 2 représente le jour, ici on vérifie si le nombre de jour est inférieur à 1
-    // jour
-    if (date[2] < 1) {
-        birthDateMessage.textContent = "Le jour est incorrect";
-        return false;
-
-    } else if (date[1] < 1 || date[1] > 12) {
-        birthDateMessage.textContent = "Le mois est incorrect";
-        return false;
-
-    } else if (date[0] > 9999) {
-        let birthDateMessage = document.getElementById("birthdateError");
-        birthDateMessage.innerHTML = errors.errorBirthdateYear;
-
-        return false;
-
-    }
-    if (date[0] > 2004) {
-        birthDateMessage.textContent = "Vous devez être majeur";
-        return false;
-    } else if (currentYear < 2004) {
-
-        return true;
-    }
-}
-*/
-
-
-//Quantity
-
+//////////////////////////// Quantity, nombre de tournoi //////////////////////////////
+/*On vérifie si la valeur entrée dans le champs est inférieur à 1, si ce n'est pas le cas on 
+affiche un message d'erreur et le cadre du champs devient rouge*/
 function quantityValid() {
     if (numberQuantity.value.length < 1) {
 
@@ -340,15 +291,14 @@ function quantityValid() {
     }
 }
 
-//Locations, choix des villes
 
+//////////////////////////// Locations, choix des villes //////////////////////////////
+/*On vérifie si au moins une des cases a été validé, si ce n'est pas le cas on affiche un message d'erreur*/
 
 function locationValid() {
     if (!locations.checked) {
         let locationsMessage = document.getElementById('locationMessage');
         locationsMessage.innerHTML = errors.errorLocation;
-
-        locations.style.borderColor = 'red';
 
         return false;
 
@@ -357,7 +307,7 @@ function locationValid() {
             .getElementById('locationMessage')
             .innerHTML = "";
 
-            locations.style.borderColor = 'green';
+         
 
         return true;
     }
@@ -413,8 +363,10 @@ function locationValid() {
 
 
 
-//checkbox 1
 
+//////////////////////////// Parie checkbox //////////////////////////////
+
+/*On vérifie  si la checkbox est validé, si ce n'est pas le cas on affiche un message d'erreur*/
 function checkValid() {
     if (!checkbox.checked) {
 
@@ -434,43 +386,10 @@ function checkValid() {
     }
 }
 
-//checkbox 2
 
-function checkValidTwo() {
-    if (!checkboxTwo.checked) {
 
-        let checkboxMessage = document.getElementById("checkboxMessageTwo");
-        checkboxMessage.innerHTML = errors.errorCheckboxTwo;
-       
-      
-
-        return false;
-
-    } else {
-        document
-            .getElementById("checkboxMessageTwo")
-            .innerHTML = "";
-
-            
-
-        return true;
-    }
-}
-
-//merci inscription
-
-// Suppression des champs et affichage du message de validation d'envoi
-// //////////////////////////
-/*
-const change = document.querySelector('form');
-change.addEventListener("click", () => {
- change.style.visibility = 'hidden';
-change.style.background = 'black';
-});
-
-/*test debut */
-const change = document.querySelector('form');
-
+//////////////////////////// Parie modal remerciement //////////////////////////////
+//On affiche le modal avec display block et on le ferme avec display none
 function launchConfirmation() {
     formConfirmation.style.display = "block";  
   }
@@ -479,24 +398,5 @@ function closeConfirmation(){
     formConfirmation.style.display = "none";
 }
 
-
-
-
-/*test fin */
-
-
-/*function launchConfirmation() {
-    formConfirmation.style.display = "flex";
-    modalContent.style.display = "none";
-    confirmationBody.style.display = "flex";
-  }*/
-  
-  //closeFormConfirmation() event listener
-  closeForm.addEventListener("click", closeModal);
-  closeForm.addEventListener("click", closeFormConfirmation);
-  
-  //The function closeFormConfirmation() closes both the modal and the confirmation window
-  function closeFormConfirmation() {
-    formConfirmation.style.display = "none";
-    confirmationBody.style.display = "none";
-  }
+ 
+ 
