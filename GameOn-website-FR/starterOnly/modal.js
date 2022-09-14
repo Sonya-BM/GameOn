@@ -91,7 +91,7 @@ function firstNameValid() {
         let firstNameMessage = document.getElementById("firstnameError");
         firstNameMessage.innerHTML = errors.errorName1;
        
-        firstName.style.borderColor = 'red';
+        firstName.style.border = '2px solid red';
 
         return false;
 
@@ -100,7 +100,7 @@ function firstNameValid() {
         let firstNameMessage = document.getElementById("firstnameError");
         firstNameMessage.innerHTML = errors.errorName2;
       
-        firstName.style.borderColor = 'red';
+        firstName.style.border = '2px solid red';
 
         return false;
 
@@ -109,7 +109,7 @@ function firstNameValid() {
             .getElementById("firstnameError")
             .innerHTML = "";
 
-            firstName.style.borderColor = 'white';
+            firstName.style.border = '2px solid white';
 
         return true;
     }
@@ -126,7 +126,7 @@ function lastNameValid() {
         let lastNameMessage = document.getElementById("lastNameError");
         lastNameMessage.innerHTML = errors.errorName3;
 
-        lastName.style.borderColor = 'red';
+        lastName.style.border = '2px solid red';
 
         return false;
 
@@ -135,7 +135,7 @@ function lastNameValid() {
         let lastNameMessage = document.getElementById("lastNameError");
         lastNameMessage.innerHTML = errors.errorName4;
 
-        lastName.style.borderColor = 'red';
+        lastName.style.border = '2px solid red';
 
         return false;
 
@@ -144,7 +144,7 @@ function lastNameValid() {
             .getElementById("lastNameError")
             .innerHTML = "";
 
-            lastName.style.borderColor = 'white';
+            lastName.style.border = '2px solid white';
 
         return true;
     }
@@ -159,7 +159,7 @@ function emailValid() {
         let emailMessage = document.getElementById("emailError");
         emailMessage.innerHTML = errors.errorEmail;
 
-        email.style.borderColor = 'red';
+        email.style.border = '2px solid red';
 
         return false;
 
@@ -168,7 +168,7 @@ function emailValid() {
             .getElementById("emailError")
             .innerHTML = "";
 
-            email.style.borderColor = 'white';
+            email.style.border = '2px solid white';
 
         return true;
     }
@@ -183,7 +183,7 @@ function birthdateValid2() {
         let birthDateMessage2 = document.getElementById('birthdateError');
         birthDateMessage2.innerHTML = errors.birthdateError2;
      
-        birthdate.style.borderColor = 'red';
+        birthdate.style.border = '2px solid red';
 
         return false;
     } else {
@@ -191,7 +191,7 @@ function birthdateValid2() {
             .getElementById("birthdateError")
             .innerHTML = "";
 
-            birthdate.style.borderColor = 'white';
+            birthdate.style.border = '2px solid white';
 
         return true;
     }
@@ -231,7 +231,7 @@ function birthdateValid() {
        let BirthdateMessageDay = document.getElementById('birthdateError');
        BirthdateMessageDay.innerHTML = errors.errorBirthdateDay;
        
-       birthdate.style.borderColor = 'red';
+       birthdate.style.border = '2px solid red';
 
         return false;
 
@@ -239,7 +239,7 @@ function birthdateValid() {
       let  birthDateMessageMonth = document.getElementById('birthdateError');
       birthDateMessageMonth.innerHTML = errors.errorBirthdateMonth;
 
-      birthdate.style.borderColor = 'red';
+      birthdate.style.border = '2px solid red';
 
         return false;
 
@@ -247,7 +247,7 @@ function birthdateValid() {
         let birthDateMessageYear = document.getElementById("birthdateError");
         birthDateMessageYear.innerHTML = errors.errorBirthdateYear;
         
-        birthdate.style.borderColor = 'red';
+        birthdate.style.border = '2px solid red';
 
         return false;
 
@@ -255,13 +255,13 @@ function birthdateValid() {
     if (date[0] > 2010) {
         birthDateMessage.textContent = "Vous devez être majeur";
 
-        birthdate.style.borderColor = 'red';
+        birthdate.style.border = '2px solid red';
 
         return false;
 
     } else if (currentYear < 2010) {
 
-        birthdate.style.borderColor = 'white';
+        birthdate.style.border = '2px solid white';
 
         return true;
     }
@@ -277,7 +277,7 @@ function quantityValid() {
         let quantityMessage = document.getElementById("quantityError");
         quantityMessage.innerHTML = errors.errorQuantity;
 
-        numberQuantity.style.borderColor = 'red';
+        numberQuantity.style.border = '2px solid red';
         return false;
 
     } else {
@@ -285,7 +285,7 @@ function quantityValid() {
             .getElementById("quantityError")
             .innerHTML = "";
            
-            numberQuantity.style.borderColor = 'white';
+            numberQuantity.style.border = '2px solid white';
 
         return true;
     }
@@ -398,5 +398,3 @@ function closeConfirmation(){
     formConfirmation.style.display = "none";
 }
 
- 
- 
