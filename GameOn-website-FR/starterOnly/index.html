@@ -13,7 +13,7 @@
     <body>
         <div class="topnav" id="myTopnav">
             <div class="header-logo">
-                <img alt="logo" src="Logo.png" width="auto" height="auto"/>
+                <img alt="logo" src="Logo.png"/>
             </div>
             <div class="main-navbar">
 
@@ -32,7 +32,7 @@
                 </a>
             </div>
         </div>
-    </div>
+  
     <main>
         <div class="hero-section">
             <div class="hero-content">
@@ -56,12 +56,12 @@
 
         <div class="bground">
             <div class="content">
-                <span onclick="close();" class="close"></span>
+                <span id="close" class="close"></span>
                 <div class="modal-body">
                     <form id="allData" name="reserve" action="index.html" method="get">
 
                         <div class="formData">
-                            <label for="Prénom">Prénom</label><br>
+                            <label for="firstname">Prénom</label><br>
                             <input class="text-control" type="text" id="firstname" name="firstname"><br>
                             <p id="firstnameError"></p>
                         </div>
@@ -97,7 +97,7 @@
                         <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
                         <div class="formData">
                             <input
-                                class="checkbox-input"
+                                class="checkbox-input location"
                                 type="radio"
                                 id="location1"
                                 name="location"
@@ -106,7 +106,7 @@
                                 <span class="checkbox-icon"></span>
                                 New York</label >
                             <input
-                                class="checkbox-input"
+                                class="checkbox-input location"
                                 type="radio"
                                 id="location2"
                                 name="location"
@@ -115,7 +115,7 @@
                                 <span class="checkbox-icon"></span>
                                 San Francisco</label >
                             <input
-                                class="checkbox-input"
+                                class="checkbox-input location"
                                 type="radio"
                                 id="location3"
                                 name="location"
@@ -124,7 +124,7 @@
                                 <span class="checkbox-icon"></span>
                                 Seattle</label >
                             <input
-                                class="checkbox-input"
+                                class="checkbox-input location"
                                 type="radio"
                                 id="location4"
                                 name="location"
@@ -133,7 +133,7 @@
                                 <span class="checkbox-icon"></span>
                                 Chicago</label >
                             <input
-                                class="checkbox-input"
+                                class="checkbox-input location"
                                 type="radio"
                                 id="location5"
                                 name="location"
@@ -142,7 +142,7 @@
                                 <span class="checkbox-icon"></span>
                                 Boston</label >
                             <input
-                                class="checkbox-input"
+                                class="checkbox-input location"
                                 type="radio"
                                 id="location6"
                                 name="location"

@@ -14,7 +14,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
+  background-image: "background.png";
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -40,6 +40,7 @@ img {
 }
 .header-logo img{
   height: 25px;
+  width: auto;
 }
 .main-navbar {
     float: right;
@@ -100,6 +101,7 @@ img {
   }
   .header-logo img{
       height: 15px;
+      width: auto;
   }
 }
 
@@ -551,6 +553,7 @@ footer {
    }
    .header-logo img{
     height: 25px;
+    width: auto;
 }
 
     .hero-headline{
@@ -635,6 +638,7 @@ width:70.1%;
 }
 .header-logo img{
   height: 15px;
+  width: auto;
 }
 .hero-section{
 padding-bottom: 0%;
