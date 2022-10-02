@@ -78,15 +78,8 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
- /* .topnav a {display: none;}*/
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-}
 
+/*version tablette*/
 @media screen and (max-width: 768px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
@@ -99,22 +92,21 @@ img {
     display: block;
     text-align: left;
   }
-  .header-logo img{
-      height: 15px;
-      width: auto;
-  }
-}
-
-
-
- @media screen and (max-width: 540px) {
-  /*.topnav a {display: none;}*/
   .topnav a.icon {
     float: right;
     display: block;
     margin-top: -15px;
   }
-} 
+  .header-logo img{
+      height: 15px;
+      width: auto;
+  }
+  
+}
+
+
+/*version mobile*/
+
 
 main {
   font-size: 130%;
@@ -171,7 +163,7 @@ main {
 .smFont {
   font-size: 16px;
 }
-
+/*bground = formulaire à remplir*/
 .bground {
   display: none;
   position: fixed;
@@ -215,7 +207,7 @@ display: flex;
 padding-top: 100%;
 }
 
-/*Fin modal thanks*/
+/*Fin modal remerciement*/
 .content {
   margin: 5% auto;
   width: 100%;
@@ -278,12 +270,7 @@ input {
   font-size: small;
 }
 
-/* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
+
 
 .checkbox-label,
 .checkbox2-label {
@@ -458,7 +445,7 @@ input[data-error]::after {
   font-size: 16px;
 }
 .hero-section {
-  min-height: 85vh; /*93vh*/          /*section modifier*/
+  min-height: 85vh; 
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -532,7 +519,8 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
-@media screen and (max-width: 992px) { /*852px*/
+/*Début version tablette*/
+@media screen and (max-width: 992px) { 
   .topnav{
     margin-top: 30px;
    }
@@ -594,7 +582,7 @@ font-weight: bold;
     margin: 32px auto 10px;
     padding: 12px 35px;
   }
-/*Début modal thanks*/
+/*Début modal remerciement*/
 
 
 .bgroundConfirmation > .content .btn-submit{
@@ -605,17 +593,21 @@ padding-left: 15%;
 padding-right: 15%;
 text-align: center;
 }
-/*Fin modal thanks*/
+/*Fin modal remerciement*/
   .copyrights {
     margin-top: 50px;
     text-align: center;
   }
 }
+/*Début version mobile*/
 @media screen and (max-width: 540px){
+   /*topnav = menu*/
  .topnav{
   margin-top: 30px;
- }
- .topnav a.icon{
+ }   
+  .topnav a.icon {
+      float: right;
+      display: block;
   color: red;
   margin-top: 0px;
  }
@@ -647,7 +639,7 @@ margin-bottom: 0%;
 .hero-section > .btn-signup{
 margin-bottom: 0%;    
 }
-/*Début modal thanks*/
+/*Début modal remerciement*/
 
 .bgroundConfirmation > .content p{
 font-size: 19px;
@@ -660,7 +652,7 @@ padding-left: 15%;
 padding-right: 15%;
 text-align: center;
 }
-/*Fin modal thanks*/
+/*Fin modal remerciement*/
 .copyrights{
   padding-top: 20px;
   padding-bottom: 20px;
