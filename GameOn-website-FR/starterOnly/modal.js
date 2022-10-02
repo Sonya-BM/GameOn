@@ -20,8 +20,8 @@ function launchModal() {
     modalbg.style.display = "block";
 }
 
-// /////////////////////////////Fermeture de la modal
-// /////////////////////////////
+// /////////////////////////////Fermeture et rénitialisation de la modal// /////////////////////////////
+
 
 function close() {
     modalbg.style.display = "none";
@@ -31,7 +31,7 @@ function close() {
 }
 closeBtn.addEventListener("click", close);
 /* none" ferme la modal*/
-/* reset" renitialise la modal*/
+/* reset" rénitialise la modal*/
 
 // //////////////////////// Récupération des id / ////////////////////////
 let firstName = document.getElementById('firstname');
@@ -49,7 +49,7 @@ const nameCharacter = /([A-Za-z-])+$/;
 const emailCharacter = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;/*/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-z]{2,3})$/ */
 const birthdateCharacter = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
 const quantityCharacter = /([0-9])$/;
-// messages
+// les messages d'erreur
 const errors = {
     errorName1: "2 caractères minimum",
     errorName2: "Seul l'alphabet est accépté",
@@ -66,8 +66,8 @@ const errors = {
     errorLocation: "Veuillez choisir une ville"
 }
 
-// formData[] création d'un tableau qui récupère les données et les stocks on
-// récupre
+// Fermeture de la modal lorsque que les données sont validées et ouverture de la modal avec le message de remerciement
+
 document
     .getElementById('allData')
     .addEventListener("submit", function (event) {
@@ -80,7 +80,7 @@ document
         }
         return false;
     });
-
+//Les fonctions utilisées pour les input
 function validateForm() {
     firstNameValid();
     lastNameValid();
@@ -99,11 +99,12 @@ function validateForm() {
     }
 }
 
-/* //////////////////////////// firsttName //////////////////////////// vérifie
- * si la valeur dans le champs est inférieur à 2 caractères et si les caractères
- * saisie corresponde aux conditions du regex avec la méthode test()
-si ce n'est
- * pas le cas on affiche un message d'erreur et le cadre du champs devient rouge
+///////////////////////////// Pour firstName et lastName //////////////////////////// 
+/*On vérifie :
+ - si la valeur dans le champs est supérieur à 2 caractères et 
+ - si la valeur saisie correspond aux conditions du regex avec la méthode test()
+si ce n'est pas le cas :
+ - on affiche un message d'erreur et le cadre du champs devient rouge
  */
 
 function firstNameValid() {
@@ -136,11 +137,6 @@ function firstNameValid() {
     }
 }
 
-/* //////////////////////////// lastName //////////////////////////// vérifie si
- * les caractères saisie corresponde aux conditions du regex
-si ce n'est pas le
- * cas on affiche un message d'erreur et le cadre du champs devient rouge
- */
 
 function lastNameValid() {
     if (lastName.value.length < 2) {
@@ -172,10 +168,11 @@ function lastNameValid() {
     }
 }
 
-/* //////////////////////////// email //////////////////////////// vérifie si
- * les caractères saisie corresponde aux conditions du regex
-si ce n'est pas le
- * cas on affiche un message d'erreur et le cadre du champs devient rouge
+///////////////////////////// email //////////////////////////// 
+/*On vérifie si :
+ - la valeur saisie correspond aux conditions du regex
+si ce n'est pas le cas:
+ - on affiche un message d'erreur et le cadre du champs devient rouge
  */
 function emailValid() {
     if (emailCharacter.test(email.value) == false) {
@@ -198,14 +195,11 @@ function emailValid() {
     }
 }
 
-/* //////////////////////////// Birthdate //////////////////////////// vérifie
- * si la date de naissance a bien été saisi, si ce n'est pas le cas
-on affiche
- * un message d'erreur et le champs devient rouge
- */
+///////////////////////////// Birthdate //////////////////////////// 
+
 let today = new Date(); //Récupère la date actuelle
 let currentYear = today.getFullYear(); // Stock l'année dans currentYear
-let daysInMonth = [
+let daysInMonth = [         //on donne un nombre de jour maximum aux mois
     31,
     29,
     31,
@@ -220,6 +214,16 @@ let daysInMonth = [
     31
 ];
 
+/*Pour la fonction birthdateValid() : 
+ On vérifie si :
+  - si la date de naissance a bien été saisi
+   si ce n'est pas le cas :
+  - on affiche un message d'erreur et le champs devient rouge
+  Ensuite :
+  on vérifie si :
+  currentYear(l'année actuelle) moins la valeur saisie est inférieur à 18 ans
+  Dans ce cas là, on affiche un message d'erreur et le cadre devient rouge
+ */
 function birthdateValid() {
     let vari = new Date(birthdate.value);
     if (birthdate.value.length < 1) {
@@ -250,11 +254,11 @@ function birthdateValid() {
 
 }
 
-// ////////////////////////// Quantity, nombre de tournoi
-/* // //////////////////////////// vérifie si la valeur entrée dans le champs
- * est inférieur à 1, si ce n'est pas le cas on
-affiche un message d'erreur et
- * le cadre du champs devient rouge
+//////////////////////////// Quantity, nombre de tournoi ////////////////////////////
+/* On vérifie 
+ - si la valeur entrée dans le champs est inférieur à 1
+  si ce n'est pas le cas :
+ - on affiche un message d'erreur et le cadre du champs devient rouge
  */
 function quantityValid() {
     if (numberQuantity.value.length < 1) {
@@ -276,11 +280,13 @@ function quantityValid() {
     }
 }
 
-// ////////////////////////// Locations, choix des villes
-/* // //////////////////////////// vérifie si au moins une des cases a été
- * validé, si ce n'est pas le cas on affiche un message d'erreur
+//////////////////////////// Locations, choix des villes ////////////////////////////
+/* On vérifie si :
+ - au moins une des cases a été validé en parcourant le tableau avec i++
+  Si ce n'est pas le cas :
+ - on affiche un message d'erreur
  */
-//on parcours le tableau avec i++, on vérifie si  ça a été chécké
+
 function locationValid() {
 
     for (let i = 0; i < locations.length; i++) {
@@ -300,9 +306,11 @@ function locationValid() {
 
 
 
-/* //////////////////////////// Parie checkbox ////////////////////////////
- * vérifie  si la checkbox est validé, si ce n'est pas le cas on affiche un
- * message d'erreur
+///////////////////////////// Partie checkbox ////////////////////////////
+ /* Onvérifie  si :
+- la checkbox est validé
+  si ce n'est pas le cas :
+- on affiche un message d'erreur
  */
 function checkValid() {
     if (!checkbox.checked) {
@@ -321,9 +329,11 @@ function checkValid() {
     }
 }
 
-// ////////////////////////// Parie modal remerciement
-// //////////////////////////// On affiche le modal avec display block et on le
-// ferme avec display none
+//////////////////////////// Parie modal remerciement ////////////////////////////
+/* 
+   - On affiche le modal avec display block et
+   - On le ferme avec display none
+*/
 function launchConfirmation() {
     formConfirmation.style.display = "block";
 }
