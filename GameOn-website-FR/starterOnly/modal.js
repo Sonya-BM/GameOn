@@ -88,9 +88,8 @@ function validateForm() {
     quantityValid();
     locationValid();
     checkValid();
-    birthdateValid2();
-
-    if (firstNameValid() && lastNameValid() && birthdateValid2() && emailValid() && quantityValid() && locationValid() && checkValid()) {
+    birthdateValid();
+    if (firstNameValid() && lastNameValid() && birthdateValid() && emailValid() && quantityValid() && locationValid() && checkValid()) {
 
         return true;
 
@@ -221,9 +220,8 @@ let daysInMonth = [
     31
 ];
 
-function birthdateValid2() {
+function birthdateValid() {
     let vari = new Date(birthdate.value);
-    vari.getFullYear();
     if (birthdate.value.length < 1) {
         let birthDateMessage2 = document.getElementById('birthdateError');
         birthDateMessage2.innerHTML = errors.birthdateError2;
@@ -239,7 +237,8 @@ function birthdateValid2() {
 
         return false;
 
-    } else {
+    }
+       else {
         document
             .getElementById("birthdateError")
             .innerHTML = "";
@@ -248,86 +247,8 @@ function birthdateValid2() {
 
         return true;
     }
+
 }
-
-// Validates that the input string is a valid date formatted as "mm/dd/yyyy"
-/*function birthdateValid2(birthdate)
-{
-    // First check for the pattern
-    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(birthdate))
-
-        return false;
-
-    // Parse the date parts to integers
-    var parts = birthdate.split("/");
-    var day = parseInt(parts[1], 10);
-    var month = parseInt(parts[0], 10);
-    var year = parseInt(parts[2], 10);
-
-    // Check the ranges of month and year
-    if(year < 1000 || year > 3000 || month == 0 || month > 12)
-        return false;
-
-    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
-
-    // Adjust for leap years
-    if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
-        monthLength[1] = 29;
-
-    // Check the range of the day
-    return day > 0 && day <= monthLength[month - 1];
-};*/
-
-/*function birthdateValid() {
-    let birthDateMessage = document.getElementById("birthdateError");
-    birthDateMessage.innerHTML = errors.errorBirthdateYear;
-
-    let date = birthdate
-        .value
-        .split('-');
-/*On divise la valeur en array de strings */
-/*   console.log(date);
-    // 2 représente le jour, ici on vérifie si le nombre de jour est inférieur à 1
-    // jour
-  /*  if (date[2] < 1) {
-       let BirthdateMessageDay = document.getElementById('birthdateError');
-       BirthdateMessageDay.innerHTML = errors.errorBirthdateDay;
-
-       birthdate.style.border = '2px solid red';
-
-        return false;
-
-    } else if (date[1] < 1 || date[1] > 12) {
-      let  birthDateMessageMonth = document.getElementById('birthdateError');
-      birthDateMessageMonth.innerHTML = errors.errorBirthdateMonth;
-
-      birthdate.style.border = '2px solid red';
-
-        return false;
-
-    } else if (date[0] > 2010) {
-        let birthDateMessageYear = document.getElementById("birthdateError");
-        birthDateMessageYear.innerHTML = errors.errorBirthdateYear;
-
-        birthdate.style.border = '2px solid red';
-
-        return false;
-
-    }
-    if (date[0] > 2010) {
-        birthDateMessage.textContent = "Vous devez être majeur";
-
-        birthdate.style.border = '2px solid red';
-
-        return false;
-
-    } else if (currentYear < 2010) {
-
-        birthdate.style.border = '2px solid white';
-
-        return true;
-    }
-}*/
 
 // ////////////////////////// Quantity, nombre de tournoi
 /* // //////////////////////////// vérifie si la valeur entrée dans le champs
@@ -359,7 +280,7 @@ function quantityValid() {
 /* // //////////////////////////// vérifie si au moins une des cases a été
  * validé, si ce n'est pas le cas on affiche un message d'erreur
  */
-
+//on parcours le tableau avec i++, on vérifie si  ça a été chécké
 function locationValid() {
 
     for (let i = 0; i < locations.length; i++) {
@@ -378,54 +299,6 @@ function locationValid() {
 }
 
 
-/*function locationValid() {
-    if (document.getElementById('location1').checked) {
-        document
-            .getElementById("locationMessage")
-            .innerHTML;
-
-
-    } else if (document.getElementById('location2').checked) {
-        document
-            .getElementById("locationMessage")
-            .innerHTML = "";
-
-
-
-    } else if (document.getElementById('location3').checked) {
-        document
-            .getElementById("locationMessage")
-            .innerHTML = "";
-
-
-    } else if (document.getElementById('location4').checked) {
-        document
-            .getElementById("locationMessage")
-            .innerHTML = "";
-
-
-    } else if (document.getElementById('location5').checked) {
-        document
-            .getElementById("locationMessage")
-            .innerHTML = "";
-
-
-    } else if (document.getElementById('location6').checked) {
-        document
-            .getElementById("locationMessage")
-            .innerHTML = "";
-
-
-    } else {
-        document
-            .getElementById("locationMessage")
-            .innerHTML = errors.errorLocation;
-
-            locations.style.borderColor = 'red';
-
-        };
-}
-*/
 
 /* //////////////////////////// Parie checkbox ////////////////////////////
  * vérifie  si la checkbox est validé, si ce n'est pas le cas on affiche un
