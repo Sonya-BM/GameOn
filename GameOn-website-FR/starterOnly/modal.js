@@ -46,7 +46,7 @@ let formConfirmation = document.getElementById('formConfirmation');
 let buttonValid = document.getElementById('button');
 // Utilisation de regex
 const nameCharacter = /([A-Za-z-])+$/;
-const emailCharacter = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;/*/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-z]{2,3})$/ */
+const emailCharacter = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
 const birthdateCharacter = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
 const quantityCharacter = /([0-9])$/;
 // les messages d'erreur
@@ -308,8 +308,7 @@ function locationValid() {
 
 ///////////////////////////// Partie checkbox ////////////////////////////
  /* Onvérifie  si :
-- la checkbox est validé
-  si ce n'est pas le cas :
+- la checkbox n'est pas validé
 - on affiche un message d'erreur
  */
 function checkValid() {
