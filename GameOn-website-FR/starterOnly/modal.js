@@ -102,7 +102,7 @@ function validateForm() {
 ///////////////////////////// Pour firstName et lastName //////////////////////////// 
 /*On vérifie :
  - si la valeur dans le champs est supérieur à 2 caractères et 
- - si la valeur saisie correspond aux conditions du regex avec la méthode test()
+ - si la valeur saisie ne correspond pas aux conditions du regex avec la méthode test()
 si ce n'est pas le cas :
  - on affiche un message d'erreur et le cadre du champs devient rouge
  */
@@ -307,7 +307,7 @@ function locationValid() {
 
 
 ///////////////////////////// Partie checkbox ////////////////////////////
- /* Onvérifie  si :
+ /* On vérifie  si :
 - la checkbox n'est pas validé
 - on affiche un message d'erreur
  */
